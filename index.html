@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha Acuity Solutions | Leadership & Governance Advisory</title>
+    
+    <!-- Clean Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS immediately
+        (function() {
+            emailjs.init("tymi_eG6u1ibJj-FO");
+            console.log("📧 EmailJS initialized for Alpha Acuity Solutions");
+        })();
+    </script>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header id="header">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="#home">
+                    <img src="images/logo.png" alt="Alpha Acuity Solutions" class="logo-image">
+                </a>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#programmes" class="nav-link">Programmes</a></li>
+                    <li><a href="#consultants" class="nav-link">Consultants</a></li>
+                    <li><a href="#contact" class="btn btn-primary">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-subtitle">Professional Advisory & Training</div>
+                <h1>Building Capable Leaders & Effective Governance</h1>
+                <p class="hero-description">Alpha Acuity Solutions is a professional advisory and training firm specialising in governance, leadership development, and organisational effectiveness. We design and deliver structured, high-impact leadership programmes for individuals and teams across all stages of their leadership journey.</p>
+                
+                <div class="hero-cta">
+                    <a href="#programmes" class="btn btn-primary">
+                        <i class="fas fa-book-open"></i>
+                        Explore Programmes
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-calendar-alt"></i>
+                        Schedule Consultation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Leadership meeting">
+                </div>
+                
+                <div class="about-content">
+                    <h2>About Us & Our Focus</h2>
+                    <p>Alpha Acuity Solutions Limited focuses on building capable leaders and effective governance systems that enable organisations to perform sustainably in complex environments.</p>
+                    <p>Our work is grounded in practical leadership and governance experience, combining proven frameworks, behavioural insight, and real-world application to strengthen decision-making, accountability, and performance at every level of an organisation.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div>
+                                <h4>Practical Experience</h4>
+                                <p>Programmes grounded in real leadership and governance experience</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-sitemap"></i>
+                            </div>
+                            <div>
+                                <h4>Structured Development</h4>
+                                <p>Clear pathways from emerging leaders to board members</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <h4>Measurable Impact</h4>
+                                <p>Outcomes-driven programmes designed to strengthen performance</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAMMES SECTION -->
+    <section class="programmes" id="programmes">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Leadership Programmes</h2>
+                <p class="section-subtitle">Structured development pathways for every leadership stage, from emerging leaders to board members</p>
+            </div>
+
+            <div class="programme-tabs" id="programmeTabs">
+                <button class="tab-btn active" data-filter="all">All Programmes</button>
+                <button class="tab-btn" data-filter="foundation">Foundation</button>
+                <button class="tab-btn" data-filter="management">Management</button>
+                <button class="tab-btn" data-filter="executive">Executive</button>
+            </div>
+
+            <div class="programme-grid" id="programmeGrid">
+                <!-- Programme cards will be dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CONSULTANTS SECTION -->
+    <section class="consultants" id="consultants">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Consultants</h2>
+                <p class="section-subtitle">Seasoned professionals with extensive experience in leadership, governance, and organisational effectiveness</p>
+            </div>
+
+            <div class="consultants-grid">
+                <div class="consultant-card">
+                    <div class="consultant-header">
+                        <div class="consultant-image">
+                            <img src="images/changwe-headshot.jpg" alt="Changwe Mulimbika">
+                        </div>
+                        <h3>Changwe Mulimbika</h3>
+                        <p style="color: var(--secondary); font-weight: 500;">Co-Founder & Lead Consultant</p>
+                    </div>
+                    
+                    <div class="consultant-body">
+                        <p>Changwe is a seasoned finance and governance professional with over 20 years of experience, including senior leadership roles such as Chief Financial Officer and service as a Non-Executive Director on multiple boards.</p>
+                        
+                        <div class="consultant-credentials">
+                            <span class="credential-badge">
+                                <i class="fas fa-graduation-cap"></i> MBA
+                            </span>
+                            <span class="credential-badge">
+                                <i class="fas fa-award"></i> FCCA
+                            </span>
+                            <span class="credential-badge">
+                                <i class="fas fa-award"></i> ZICA Fellow
+                            </span>
+                            <span class="credential-badge">
+                                <i class="fas fa-user-tie"></i> IoDZ Member
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="consultant-card">
+                    <div class="consultant-header">
+                        <div class="consultant-image">
+                            <img src="images/chansa-headshot.jpg" alt="Chansa Lubumbe Mulondiwa">
+                        </div>
+                        <h3>Chansa Lubumbe Mulondiwa</h3>
+                        <p style="color: var(--secondary); font-weight: 500;">Co-Founder & Lead Consultant</p>
+                    </div>
+                    
+                    <div class="consultant-body">
+                        <p>Chansa is an experienced finance professional and board member with strong expertise in governance, financial management, and leadership development. She brings extensive experience in senior finance roles with a strong track record in financial oversight and strategic planning.</p>
+                        
+                        <div class="consultant-credentials">
+                            <span class="credential-badge">
+                                <i class="fas fa-user-tie"></i> IoDZ Member
+                            </span>
+                            <span class="credential-badge">
+                                <i class="fas fa-chart-line"></i> Financial Governance
+                            </span>
+                            <span class="credential-badge">
+                                <i class="fas fa-briefcase"></i> Board Experience
+                            </span>
+                            <span class="credential-badge">
+                                <i class="fas fa-lightbulb"></i> Strategic Planning
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VALUE PROPOSITION -->
+    <section class="value" id="value">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Value Proposition</h2>
+                <p class="section-subtitle">Why organisations choose Alpha Acuity Solutions for leadership and governance development</p>
+            </div>
+
+            <div class="value-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <h3>Leadership Continuum</h3>
+                    <p>A clear development pathway from emerging leaders to boards, ensuring alignment across all organisational levels.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>Clear Distinction</h3>
+                    <p>Strong differentiation between leadership development and governance oversight for appropriate focus at each level.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Practical Insight</h3>
+                    <p>Programmes grounded in real leadership and governance experience, combining proven frameworks with application.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Tailored Solutions</h3>
+                    <p>Customised programmes aligned to institutional and sector-specific needs for maximum relevance and impact.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Professional Delivery</h3>
+                    <p>A professional, facilitative, and credible delivery style that engages participants and drives learning outcomes.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Flexible Delivery</h3>
+                    <p>In-person workshops, virtual sessions, blended learning, and tailored engagements with follow-up support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLIENTS SECTION -->
+    <section class="clients" id="clients">
+        <div class="container">
+            <div class="section-title">
+                <h2>Who We Work With</h2>
+                <p class="section-subtitle">We partner with organisations across sectors to build leadership and governance capability</p>
+            </div>
+
+            <div class="client-logos">
+                <div class="client-logo">
+                    <div class="client-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                </div>
+                
+                <div class="client-logo">
+                    <div class="client-icon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                </div>
+                
+                <div class="client-logo">
+                    <div class="client-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                </div>
+                
+                <div class="client-logo">
+                    <div class="client-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                </div>
+                
+                <div class="client-logo">
+                    <div class="client-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                </div>
+                
+                <div class="client-logo">
+                    <div class="client-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p class="section-subtitle">Get in touch to discuss your leadership and governance development needs</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email Us</h3>
+                            <p>info@alphaacuity.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>Call Us</h3>
+                            <p>+260 97 802 1579</p>
+                            <p>+260 97 748 2173</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Visit Us</h3>
+                            <p>Lusaka, Zambia</p>
+                            <p>Farm 690B Ferngroove Kasupe Road. Lusaka West</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3>Send a Message</h3>
+                    
+                    <!-- Message display area -->
+                    <div id="formMessage" style="display: none; margin-bottom: 20px; padding: 15px; border-radius: 8px;"></div>
+                    
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="contactName" name="name" placeholder="Your Full Name" required>
+                            <small class="form-error" data-field="name" style="color: #dc3545; display: none;"></small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="contactEmail" name="email" placeholder="Your Email Address" required>
+                            <small class="form-error" data-field="email" style="color: #dc3545; display: none;"></small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="tel" class="form-control" id="contactPhone" name="phone" placeholder="Your Phone Number (Optional)">
+                            <small class="form-error" data-field="phone" style="color: #dc3545; display: none;"></small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="contactOrganization" name="organization" placeholder="Your Organization (Optional)">
+                            <small class="form-error" data-field="organization" style="color: #dc3545; display: none;"></small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <select class="form-control" id="contactInterest" name="interest" required>
+                                <option value="" disabled selected>Select Area of Interest</option>
+                                <option value="Emerging Leaders Programme">Emerging Leaders Programme</option>
+                                <option value="First-Time Managers Programme">First-Time Managers Programme</option>
+                                <option value="Management & Strategy Programme">Management & Strategy Programme</option>
+                                <option value="Executive Leadership Programme">Executive Leadership Programme</option>
+                                <option value="Board Excellence Programme">Board Excellence Programme</option>
+                                <option value="Specialist Governance Masterclasses">Specialist Governance Masterclasses</option>
+                                <option value="General Inquiry">General Inquiry</option>
+                            </select>
+                            <small class="form-error" data-field="interest" style="color: #dc3545; display: none;"></small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea class="form-control" id="contactMessage" name="message" placeholder="Your Message" rows="5" required></textarea>
+                            <small class="form-error" data-field="message" style="color: #dc3545; display: none;"></small>
+                        </div>
+                        
+                        <!-- Hidden honeypot field for spam prevention -->
+                        <input type="text" name="honeypot" style="display:none">
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;" id="submitBtn">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <a href="#home">
+                            <img src="images/logo.png" alt="Alpha Acuity Solutions" class="footer-logo-image">
+                        </a>
+                    </div>
+                    <p class="footer-description">Professional advisory and training firm specialising in governance, leadership development, and organisational effectiveness.</p>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="footer-heading">Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#programmes">Leadership Development</a></li>
+                        <li><a href="#programmes">Governance Advisory</a></li>
+                        <li><a href="#programmes">Board Excellence</a></li>
+                        <li><a href="#programmes">Executive Coaching</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#consultants">Our Team</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="footer-heading">Stay Updated</h4>
+                    <p class="footer-description">Subscribe to our newsletter for insights on leadership and governance.</p>
+                    
+                    <div class="form-group" style="margin-top: 20px;">
+                        <input type="email" class="form-control" placeholder="Your Email" style="background-color: rgba(255, 255, 255, 0.1); color: white; border-color: rgba(255, 255, 255, 0.2);">
+                        <button type="button" class="btn btn-primary" style="width: 100%; margin-top: 12px; background-color: var(--secondary); border: none;">
+                            <i class="fas fa-paper-plane"></i>
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Alpha Acuity Solutions Limited. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
