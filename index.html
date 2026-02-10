@@ -46,6 +46,7 @@
                     <li><a href="#home" class="nav-link">Home</a></li>
                     <li><a href="#about" class="nav-link">About</a></li>
                     <li><a href="#programmes" class="nav-link">Programmes</a></li>
+                    <li><a href="#conference" class="nav-link">Girls Conference</a></li>
                     <li><a href="#consultants" class="nav-link">Consultants</a></li>
                     <li><a href="#contact" class="btn btn-primary">Contact Us</a></li>
                 </ul>
@@ -66,9 +67,9 @@
                         <i class="fas fa-book-open"></i>
                         Explore Programmes
                     </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        <i class="fas fa-calendar-alt"></i>
-                        Schedule Consultation
+                    <a href="#conference" class="btn btn-secondary">
+                        <i class="fas fa-female"></i>
+                        Girls Conference 2024
                     </a>
                 </div>
             </div>
@@ -141,6 +142,74 @@
 
             <div class="programme-grid" id="programmeGrid">
                 <!-- Programme cards will be dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- GIRLS CONFERENCE SECTION -->
+    <section class="conference" id="conference">
+        <div class="container">
+            <div class="conference-grid">
+                <div class="conference-content">
+                    <div class="section-title" style="text-align: left;">
+                        <h2>Empowering Future Women Leaders</h2>
+                        <p class="section-subtitle" style="text-align: left; margin-left: 0;">
+                            Join our annual Girls Leadership Conference to inspire, equip, and empower the next generation of women leaders
+                        </p>
+                    </div>
+                    
+                    <div class="conference-details">
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Annual Event</h4>
+                                <p>Held every year to celebrate and develop young women leaders</p>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <h4>For Girls 14-18</h4>
+                                <p>Designed for high school girls aspiring to leadership roles</p>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div>
+                                <h4>Leadership Skills</h4>
+                                <p>Build confidence, communication, and decision-making abilities</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="conference-cta">
+                        <a href="https://docs.google.com/forms/d/14P9Zm0eIAyUVjTcajlI6jXwMtwees4EOBa6rY9TG_mg/edit" target="_blank" class="btn btn-primary" style="font-size: 1.1rem;">
+                            <i class="fas fa-edit"></i>
+                            Register Now for Girls Conference
+                        </a>
+                        <p style="margin-top: 15px; font-size: 0.9rem; color: var(--gray);">
+                            Limited spots available. Early registration recommended.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="conference-image">
+                    <div class="image-container">
+                        <img src="images/girls-conference.jpeg" alt="Girls Conference" style="border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+                        <div class="image-overlay">
+                            <h3></h3>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -402,6 +471,7 @@
                                 <option value="Executive Leadership Programme">Executive Leadership Programme</option>
                                 <option value="Board Excellence Programme">Board Excellence Programme</option>
                                 <option value="Specialist Governance Masterclasses">Specialist Governance Masterclasses</option>
+                                <option value="Girls Conference">Girls Leadership Conference</option>
                                 <option value="General Inquiry">General Inquiry</option>
                             </select>
                             <small class="form-error" data-field="interest" style="color: #dc3545; display: none;"></small>
@@ -448,8 +518,8 @@
                     <h4 class="footer-heading">Our Services</h4>
                     <ul class="footer-links">
                         <li><a href="#programmes">Leadership Development</a></li>
+                        <li><a href="#conference">Girls Conference</a></li>
                         <li><a href="#programmes">Governance Advisory</a></li>
-                        <li><a href="#programmes">Board Excellence</a></li>
                         <li><a href="#programmes">Executive Coaching</a></li>
                     </ul>
                 </div>
@@ -459,7 +529,7 @@
                     <ul class="footer-links">
                         <li><a href="#home">Home</a></li>
                         <li><a href="#about">About Us</a></li>
-                        <li><a href="#consultants">Our Team</a></li>
+                        <li><a href="#conference">Girls Conference</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
@@ -486,5 +556,39 @@
 
     <!-- JavaScript -->
     <script src="js/main.js"></script>
+    <script>
+        // Add some inline JavaScript for the Girls Conference functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Alpha Acuity Solutions website loaded');
+            
+            // Track clicks on Girls Conference link
+            const girlsConferenceLink = document.querySelector('a[href*="docs.google.com/forms"]');
+            if (girlsConferenceLink) {
+                girlsConferenceLink.addEventListener('click', function() {
+                    console.log('Girls Conference registration link clicked');
+                });
+            }
+            
+            // Add "Girls Conference" option to the dropdown in contact form if not already there
+            const interestSelect = document.getElementById('contactInterest');
+            if (interestSelect) {
+                const options = interestSelect.options;
+                let hasGirlsConference = false;
+                for (let i = 0; i < options.length; i++) {
+                    if (options[i].value === 'Girls Conference') {
+                        hasGirlsConference = true;
+                        break;
+                    }
+                }
+                
+                if (!hasGirlsConference) {
+                    const option = document.createElement('option');
+                    option.value = 'Girls Conference';
+                    option.textContent = 'Girls Leadership Conference';
+                    interestSelect.insertBefore(option, interestSelect.lastChild);
+                }
+            }
+        });
+    </script>
 </body>
 </html>
