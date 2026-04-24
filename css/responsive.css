@@ -38,31 +38,119 @@
         padding-bottom: 80px;
     }
     
+    /* Fix: Mobile menu button - TOP RIGHT corner */
     .mobile-menu-btn {
         display: block;
+        position: relative;
+        z-index: 1001;
+        background: none;
+        border: none;
+        font-size: 1.8rem;
+        color: var(--primary);
+        cursor: pointer;
+        padding: 8px 12px;
+        transition: var(--transition);
+        margin-left: auto;
+        order: 2;
     }
     
+    /* Ensure nav container uses flex properly */
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    
+    /* Logo stays on left */
+    .logo {
+        order: 1;
+        flex-shrink: 0;
+    }
+    
+    /* Mobile menu button on right */
+    .mobile-menu-btn {
+        order: 2;
+    }
+    
+    /* Navigation menu - slides from right, not from top */
     .nav-menu {
         position: fixed;
-        top: 80px;
-        left: 0;
-        width: 100%;
-        background-color: white;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: linear-gradient(135deg, var(--primary) 0%, #0f172a 100%);
         flex-direction: column;
-        padding: 32px;
-        box-shadow: var(--shadow-hover);
-        transform: translateY(-100%);
-        opacity: 0;
-        visibility: hidden;
-        transition: var(--transition);
-        z-index: 999;
-        gap: 24px;
+        padding: 100px 32px 40px;
+        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.2);
+        transition: right 0.3s ease-in-out;
+        z-index: 1000;
+        gap: 28px;
+        align-items: flex-start;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
     }
     
     .nav-menu.active {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
+        right: 0;
+    }
+    
+    /* Style mobile nav links */
+    .nav-menu li {
+        width: 100%;
+    }
+    
+    .nav-menu .nav-link {
+        color: white;
+        font-size: 1.2rem;
+        font-weight: 500;
+        display: block;
+        padding: 8px 0;
+    }
+    
+    .nav-menu .nav-link:after {
+        background: var(--secondary);
+    }
+    
+    /* Contact button in mobile menu */
+    .nav-menu .btn-primary {
+        background: var(--gradient-secondary);
+        color: var(--primary);
+        width: 100%;
+        text-align: center;
+        margin-top: 20px;
+        padding: 14px 20px;
+    }
+    
+    /* Overlay when menu is open */
+    body.menu-open {
+        overflow: hidden;
+    }
+    
+    body.menu-open::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+    
+    /* Close button X icon transformation */
+    .mobile-menu-btn.active {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1002;
+        color: white;
+    }
+    
+    .mobile-menu-btn.active i {
+        transition: transform 0.2s ease;
     }
     
     .hero-cta {
@@ -123,5 +211,11 @@
     
     .footer-logo-image {
         height: 30px;
+    }
+    
+    /* Mobile menu width for small phones */
+    .nav-menu {
+        width: 85%;
+        max-width: 280px;
     }
 }

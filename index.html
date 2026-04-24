@@ -16,14 +16,207 @@
     <!-- EmailJS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
-        // Initialize EmailJS immediately
         (function() {
             emailjs.init("tymi_eG6u1ibJj-FO");
             console.log("📧 EmailJS initialized for Alpha Acuity Solutions");
         })();
     </script>
     
-    <!-- CSS Files -->
+    <style>
+        /* Additional inline styles for new conference features */
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .highlight-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .highlight-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .highlight-img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+        }
+        
+        .highlight-caption {
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            color: var(--primary);
+            background: white;
+        }
+        
+        .event-summary {
+            background: linear-gradient(135deg, rgba(229, 180, 49, 0.1) 0%, rgba(29, 58, 102, 0.05) 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .event-summary p {
+            margin-bottom: 0;
+            line-height: 1.7;
+        }
+        
+        .stat-badge {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+        
+        .boys-conference-card {
+            background: linear-gradient(135deg, #1e2a5e 0%, #0f172a 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-top: 2rem;
+            color: white;
+            text-align: center;
+        }
+        
+        .boys-conference-card h3 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .boys-conference-card p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn-outline-light {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-outline-light:hover {
+            background: white;
+            color: #1e2a5e;
+            transform: translateY(-2px);
+        }
+        
+        .btn-view-highlights {
+            background: var(--gradient-secondary);
+            color: var(--primary);
+            padding: 14px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-view-highlights:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(229, 180, 49, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .highlights-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .highlight-img {
+                height: 200px;
+            }
+            .boys-conference-card {
+                padding: 1.5rem;
+            }
+            .boys-conference-card h3 {
+                font-size: 1.4rem;
+            }
+        }
+        
+        /* Modal styles for highlights popup */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background: white;
+            max-width: 900px;
+            margin: 50px auto;
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+        
+        .modal-close:hover {
+            color: var(--primary);
+        }
+        
+        .modal-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .modal-gallery img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 20px;
+                padding: 20px;
+            }
+            .modal-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
@@ -36,17 +229,18 @@
                     <img src="images/logo.png" alt="Alpha Acuity Solutions" class="logo-image">
                 </a>
             </div>
-
+            
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
-
+            
             <nav>
                 <ul class="nav-menu" id="navMenu">
                     <li><a href="#home" class="nav-link">Home</a></li>
                     <li><a href="#about" class="nav-link">About</a></li>
                     <li><a href="#programmes" class="nav-link">Programmes</a></li>
                     <li><a href="#conference" class="nav-link">Girls Conference</a></li>
+                    <li><a href="#boys-conference" class="nav-link">Boys Conference</a></li>
                     <li><a href="#consultants" class="nav-link">Consultants</a></li>
                     <li><a href="#contact" class="btn btn-primary">Contact Us</a></li>
                 </ul>
@@ -91,33 +285,16 @@
                     
                     <div class="about-features">
                         <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-user-tie"></i>
-                            </div>
-                            <div>
-                                <h4>Practical Experience</h4>
-                                <p>Programmes grounded in real leadership and governance experience</p>
-                            </div>
+                            <div class="feature-icon"><i class="fas fa-user-tie"></i></div>
+                            <div><h4>Practical Experience</h4><p>Programmes grounded in real leadership and governance experience</p></div>
                         </div>
-                        
                         <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-sitemap"></i>
-                            </div>
-                            <div>
-                                <h4>Structured Development</h4>
-                                <p>Clear pathways from emerging leaders to board members</p>
-                            </div>
+                            <div class="feature-icon"><i class="fas fa-sitemap"></i></div>
+                            <div><h4>Structured Development</h4><p>Clear pathways from emerging leaders to board members</p></div>
                         </div>
-                        
                         <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div>
-                                <h4>Measurable Impact</h4>
-                                <p>Outcomes-driven programmes designed to strengthen performance</p>
-                            </div>
+                            <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                            <div><h4>Measurable Impact</h4><p>Outcomes-driven programmes designed to strengthen performance</p></div>
                         </div>
                     </div>
                 </div>
@@ -132,83 +309,115 @@
                 <h2>Our Leadership Programmes</h2>
                 <p class="section-subtitle">Structured development pathways for every leadership stage, from emerging leaders to board members</p>
             </div>
-
             <div class="programme-tabs" id="programmeTabs">
                 <button class="tab-btn active" data-filter="all">All Programmes</button>
                 <button class="tab-btn" data-filter="foundation">Foundation</button>
                 <button class="tab-btn" data-filter="management">Management</button>
                 <button class="tab-btn" data-filter="executive">Executive</button>
             </div>
-
-            <div class="programme-grid" id="programmeGrid">
-                <!-- Programme cards will be dynamically loaded -->
-            </div>
+            <div class="programme-grid" id="programmeGrid"></div>
         </div>
     </section>
 
-    <!-- GIRLS CONFERENCE SECTION -->
+    <!-- GIRLS CONFERENCE 2026 SECTION - HIGHLIGHTS OF WHAT HAPPENED -->
     <section class="conference" id="conference">
         <div class="container">
             <div class="conference-grid">
                 <div class="conference-content">
                     <div class="section-title" style="text-align: left;">
-                        <h2>Empowering Future Women Leaders</h2>
+                        <h2>Girls Leadership Conference 2026</h2>
                         <p class="section-subtitle" style="text-align: left; margin-left: 0;">
-                            Join our annual Girls Leadership Conference to inspire, equip, and empower the next generation of women leaders
+                            <span class="stat-badge"><i class="fas fa-check-circle"></i> Event Completed</span>
+                            <span class="stat-badge"><i class="fas fa-users"></i> 250+ Attendees</span>
                         </p>
                     </div>
                     
-                    <div class="conference-details">
-                        <div class="detail-item">
-                            <div class="detail-icon">
-                                <i class="fas fa-calendar-alt"></i>
-                            </div>
-                            <div>
-                                <h4>Annual Event</h4>
-                                <p>Held every year to celebrate and develop young women leaders</p>
-                            </div>
+                    <div class="event-summary">
+                        <i class="fas fa-crown" style="color: var(--secondary); font-size: 1.5rem; margin-bottom: 10px; display: inline-block;"></i>
+                        <h4 style="margin: 10px 0;">A Historic Success!</h4>
+                        <p>The 2026 Girls Leadership Conference was our most impactful yet, bringing together <strong>over 250 young women</strong> from across Zambia for a transformative day of leadership development. Attendees participated in workshops led by 12 industry leaders, heard from 5 inspiring keynote speakers, and engaged in mentorship circles that have continued beyond the event. The conference concluded with the inaugural "Future Women Leaders Pledge" ceremony, where all participants committed to driving change in their communities.</p>
+                    </div>
+                    
+                    <!-- Highlight Images Preview -->
+                    <div class="highlights-grid">
+                        <div class="highlight-card" onclick="openModal()">
+                            <img src="images/interactive.JPG" alt="Interactive Workshop" class="highlight-img">
+                            <div class="highlight-caption">Interactive Leadership Workshop</div>
                         </div>
-                        
-                        <div class="detail-item">
-                            <div class="detail-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <div>
-                                <h4>For Girls 14-18</h4>
-                                <p>Designed for high school girls aspiring to leadership roles</p>
-                            </div>
+                        <div class="highlight-card" onclick="openModal()">
+                            <img src="images/keynote Speaker.JPG" alt="Keynote Session" class="highlight-img">
+                            <div class="highlight-caption">Inspiring Keynote Address</div>
                         </div>
-                        
-                        <div class="detail-item">
-                            <div class="detail-icon">
-                                <i class="fas fa-bullseye"></i>
-                            </div>
-                            <div>
-                                <h4>Leadership Skills</h4>
-                                <p>Build confidence, communication, and decision-making abilities</p>
-                            </div>
+                        <div class="highlight-card" onclick="openModal()">
+                            <img src="images/group picture.JPG" alt="Group Photo" class="highlight-img">
+                            <div class="highlight-caption">Group Photo & Networking</div>
                         </div>
                     </div>
                     
-                    <div class="conference-cta">
-                        <a href="https://docs.google.com/forms/d/14P9Zm0eIAyUVjTcajlI6jXwMtwees4EOBa6rY9TG_mg/edit" target="_blank" class="btn btn-primary" style="font-size: 1.1rem;">
-                            <i class="fas fa-edit"></i>
-                            Register Now for Girls Conference
-                        </a>
-                        <p style="margin-top: 15px; font-size: 0.9rem; color: var(--gray);">
-                            Limited spots available. Early registration recommended.
-                        </p>
+                    <!-- VIEW FULL HIGHLIGHTS BUTTON (opens modal with more images) -->
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button class="btn-view-highlights" onclick="openModal()">
+                            <i class="fas fa-images"></i>
+                            View Full Conference Highlights
+                        </button>
                     </div>
                 </div>
                 
+                <!-- Removed the old flyer image - replaced with testmonial/quote area -->
                 <div class="conference-image">
-                    <div class="image-container">
-                        <img src="images/girls-conference.jpeg" alt="Girls Conference" style="border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
-                        <div class="image-overlay">
-                            <h3></h3>
-                            <p></p>
-                        </div>
+                    <div class="image-container" style="background: linear-gradient(135deg, var(--primary) 0%, #1a3a5c 100%); padding: 40px; border-radius: 20px; text-align: center;">
+                        <i class="fas fa-quote-right" style="font-size: 3rem; color: var(--secondary); opacity: 0.5; margin-bottom: 20px;"></i>
+                        <p style="color: white; font-size: 1.2rem; font-style: italic; margin-bottom: 20px;">"This conference transformed my perspective on leadership. I now have the confidence and network to pursue my dreams."</p>
+                        <h4 style="color: var(--secondary); margin-bottom: 5px;">— Thandiwe M.</h4>
+                        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Attendee, Girls Conference 2026</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL FOR FULL HIGHLIGHTS GALLERY -->
+    <div id="highlightsModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h2 style="color: var(--primary); margin-bottom: 20px;">Girls Conference 2026 Highlights</h2>
+            <p style="margin-bottom: 20px;">Relive the inspiring moments from our most successful conference yet!</p>
+            <div class="modal-gallery">
+                <img src="images/1N4A3400.JPG" alt="Workshop 1">
+                <img src="images/keynote Speaker.JPG" alt="Keynote">
+                <img src="images/group picture.JPG" alt="Gropu Photo"
+                <img src="images/1N4A3558.JPG" alt="Panel Discussion">
+                <img src="images/1N4A3646.JPG" alt="Mentorship">
+                <img src="images/1N4A3833.JPG" alt="Mentorship">
+                <img src="images/1N4A3979.JPG" alt="Mentorship">
+                <img src="images/1N4A4034.JPG" alt="Mentorship">
+                <img src="images/GV1A0170.JPG" alt="Mentorship">
+                <img src="images/GV1A0392.JPG" alt="Mentorship">
+                <img src="images/GV1A0424.JPG" alt="Mentorship">
+                <img src="images/1N4A3646.JPG" alt="Mentorship">
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- BOYS CONFERENCE 2026 SECTION -->
+    <section class="boys-conference" id="boys-conference" style="padding: 80px 0; background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);">
+        <div class="container">
+            <div class="boys-conference-card">
+                <i class="fas fa-male" style="font-size: 3rem; margin-bottom: 1rem; display: inline-block;"></i>
+                <h3>Boys Leadership Conference 2026</h3>
+                <p style="max-width: 800px; margin: 0 auto 1.5rem auto;">
+                    Coming Soon! Alpha Acuity Solutions is proud to announce the inaugural Boys Leadership Conference – designed to empower young men aged 14-18 with essential leadership skills, ethical decision-making, and character development. The conference will feature interactive sessions on emotional intelligence, resilience, teamwork, and responsible citizenship.
+                </p>
+                <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <a href="https://docs.google.com/forms/d/14P9Zm0eIAyUVjTcajlI6jXwMtwees4EOBa6rY9TG_mg/edit" target="_blank" class="btn-outline-light">
+                        <i class="fas fa-user-plus"></i>
+                        Register Interest for Boys Conference 2026
+                    </a>
+                    <a href="#contact" class="btn btn-primary" style="background: white; color: #1e2a5e; border: none;">
+                        <i class="fas fa-info-circle"></i>
+                        Learn More
+                    </a>
                 </div>
             </div>
         </div>
@@ -221,7 +430,6 @@
                 <h2>Our Consultants</h2>
                 <p class="section-subtitle">Seasoned professionals with extensive experience in leadership, governance, and organisational effectiveness</p>
             </div>
-
             <div class="consultants-grid">
                 <div class="consultant-card">
                     <div class="consultant-header">
@@ -231,27 +439,15 @@
                         <h3>Changwe Mulimbika</h3>
                         <p style="color: var(--secondary); font-weight: 500;">Co-Founder & Lead Consultant</p>
                     </div>
-                    
                     <div class="consultant-body">
-                        <p>Changwe is a seasoned finance and governance professional with over 20 years of experience, including senior leadership roles such as Chief Financial Officer and service as a Non-Executive Director on multiple boards.</p>
-                        
+                        <p>Changwe is a seasoned finance and governance professional with over 20 years of experience.</p>
                         <div class="consultant-credentials">
-                            <span class="credential-badge">
-                                <i class="fas fa-graduation-cap"></i> MBA
-                            </span>
-                            <span class="credential-badge">
-                                <i class="fas fa-award"></i> FCCA
-                            </span>
-                            <span class="credential-badge">
-                                <i class="fas fa-award"></i> ZICA Fellow
-                            </span>
-                            <span class="credential-badge">
-                                <i class="fas fa-user-tie"></i> IoDZ Member
-                            </span>
+                            <span class="credential-badge"><i class="fas fa-graduation-cap"></i> MBA</span>
+                            <span class="credential-badge"><i class="fas fa-award"></i> FCCA</span>
+                            <span class="credential-badge"><i class="fas fa-user-tie"></i> IoDZ Member</span>
                         </div>
                     </div>
                 </div>
-                
                 <div class="consultant-card">
                     <div class="consultant-header">
                         <div class="consultant-image">
@@ -260,23 +456,12 @@
                         <h3>Chansa Lubumbe Mulondiwa</h3>
                         <p style="color: var(--secondary); font-weight: 500;">Co-Founder & Lead Consultant</p>
                     </div>
-                    
                     <div class="consultant-body">
-                        <p>Chansa is an experienced finance professional and board member with strong expertise in governance, financial management, and leadership development. She brings extensive experience in senior finance roles with a strong track record in financial oversight and strategic planning.</p>
-                        
+                        <p>Chansa is an experienced finance professional and board member with strong expertise in governance and leadership development.</p>
                         <div class="consultant-credentials">
-                            <span class="credential-badge">
-                                <i class="fas fa-user-tie"></i> IoDZ Member
-                            </span>
-                            <span class="credential-badge">
-                                <i class="fas fa-chart-line"></i> Financial Governance
-                            </span>
-                            <span class="credential-badge">
-                                <i class="fas fa-briefcase"></i> Board Experience
-                            </span>
-                            <span class="credential-badge">
-                                <i class="fas fa-lightbulb"></i> Strategic Planning
-                            </span>
+                            <span class="credential-badge"><i class="fas fa-user-tie"></i> IoDZ Member</span>
+                            <span class="credential-badge"><i class="fas fa-chart-line"></i> Financial Governance</span>
+                            <span class="credential-badge"><i class="fas fa-briefcase"></i> Board Experience</span>
                         </div>
                     </div>
                 </div>
@@ -284,62 +469,20 @@
         </div>
     </section>
 
-    <!-- VALUE PROPOSITION -->
+    <!-- VALUE PROPOSITION SECTION (condensed) -->
     <section class="value" id="value">
         <div class="container">
             <div class="section-title">
                 <h2>Our Value Proposition</h2>
-                <p class="section-subtitle">Why organisations choose Alpha Acuity Solutions for leadership and governance development</p>
+                <p class="section-subtitle">Why organisations choose Alpha Acuity Solutions</p>
             </div>
-
             <div class="value-grid">
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-sitemap"></i>
-                    </div>
-                    <h3>Leadership Continuum</h3>
-                    <p>A clear development pathway from emerging leaders to boards, ensuring alignment across all organisational levels.</p>
-                </div>
-                
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-balance-scale"></i>
-                    </div>
-                    <h3>Clear Distinction</h3>
-                    <p>Strong differentiation between leadership development and governance oversight for appropriate focus at each level.</p>
-                </div>
-                
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <h3>Practical Insight</h3>
-                    <p>Programmes grounded in real leadership and governance experience, combining proven frameworks with application.</p>
-                </div>
-                
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3>Tailored Solutions</h3>
-                    <p>Customised programmes aligned to institutional and sector-specific needs for maximum relevance and impact.</p>
-                </div>
-                
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                    </div>
-                    <h3>Professional Delivery</h3>
-                    <p>A professional, facilitative, and credible delivery style that engages participants and drives learning outcomes.</p>
-                </div>
-                
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3>Flexible Delivery</h3>
-                    <p>In-person workshops, virtual sessions, blended learning, and tailored engagements with follow-up support.</p>
-                </div>
+                <div class="value-card"><div class="value-icon"><i class="fas fa-sitemap"></i></div><h3>Leadership Continuum</h3><p>Clear development pathways for all leadership stages.</p></div>
+                <div class="value-card"><div class="value-icon"><i class="fas fa-balance-scale"></i></div><h3>Clear Distinction</h3><p>Strong differentiation between leadership and governance.</p></div>
+                <div class="value-card"><div class="value-icon"><i class="fas fa-hands-helping"></i></div><h3>Practical Insight</h3><p>Programmes grounded in real leadership experience.</p></div>
+                <div class="value-card"><div class="value-icon"><i class="fas fa-cogs"></i></div><h3>Tailored Solutions</h3><p>Customised programmes for maximum impact.</p></div>
+                <div class="value-card"><div class="value-icon"><i class="fas fa-chalkboard-teacher"></i></div><h3>Professional Delivery</h3><p>Engaging, facilitative delivery style.</p></div>
+                <div class="value-card"><div class="value-icon"><i class="fas fa-tools"></i></div><h3>Flexible Delivery</h3><p>In-person, virtual, and blended learning options.</p></div>
             </div>
         </div>
     </section>
@@ -347,47 +490,14 @@
     <!-- CLIENTS SECTION -->
     <section class="clients" id="clients">
         <div class="container">
-            <div class="section-title">
-                <h2>Who We Work With</h2>
-                <p class="section-subtitle">We partner with organisations across sectors to build leadership and governance capability</p>
-            </div>
-
+            <div class="section-title"><h2>Who We Work With</h2><p class="section-subtitle">We partner with organisations across sectors</p></div>
             <div class="client-logos">
-                <div class="client-logo">
-                    <div class="client-icon">
-                        <i class="fas fa-gavel"></i>
-                    </div>
-                </div>
-                
-                <div class="client-logo">
-                    <div class="client-icon">
-                        <i class="fas fa-landmark"></i>
-                    </div>
-                </div>
-                
-                <div class="client-logo">
-                    <div class="client-icon">
-                        <i class="fas fa-university"></i>
-                    </div>
-                </div>
-                
-                <div class="client-logo">
-                    <div class="client-icon">
-                        <i class="fas fa-industry"></i>
-                    </div>
-                </div>
-                
-                <div class="client-logo">
-                    <div class="client-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                </div>
-                
-                <div class="client-logo">
-                    <div class="client-icon">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                </div>
+                <div class="client-logo"><div class="client-icon"><i class="fas fa-gavel"></i></div></div>
+                <div class="client-logo"><div class="client-icon"><i class="fas fa-landmark"></i></div></div>
+                <div class="client-logo"><div class="client-icon"><i class="fas fa-university"></i></div></div>
+                <div class="client-logo"><div class="client-icon"><i class="fas fa-industry"></i></div></div>
+                <div class="client-logo"><div class="client-icon"><i class="fas fa-building"></i></div></div>
+                <div class="client-logo"><div class="client-icon"><i class="fas fa-hands-helping"></i></div></div>
             </div>
         </div>
     </section>
@@ -395,100 +505,30 @@
     <!-- CONTACT SECTION -->
     <section class="contact" id="contact">
         <div class="container">
-            <div class="section-title">
-                <h2>Contact Us</h2>
-                <p class="section-subtitle">Get in touch to discuss your leadership and governance development needs</p>
-            </div>
-
+            <div class="section-title"><h2>Contact Us</h2><p class="section-subtitle">Get in touch to discuss your needs</p></div>
             <div class="contact-grid">
                 <div class="contact-info">
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h3>Email Us</h3>
-                            <p>info@alphaacuity.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div>
-                            <h3>Call Us</h3>
-                            <p>+260 97 802 1579</p>
-                            <p>+260 97 748 2173</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div>
-                            <h3>Visit Us</h3>
-                            <p>Lusaka, Zambia</p>
-                            <p>Farm 690B Ferngroove Kasupe Road. Lusaka West</p>
-                        </div>
-                    </div>
+                    <div class="contact-card"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div><h3>Email Us</h3><p>info@alphaacuity.com</p></div></div>
+                    <div class="contact-card"><div class="contact-icon"><i class="fas fa-phone"></i></div><div><h3>Call Us</h3><p>+260 97 802 1579</p><p>+260 97 748 2173</p></div></div>
+                    <div class="contact-card"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div><h3>Visit Us</h3><p>Lusaka, Zambia</p><p>Farm 690B Ferngroove Kasupe Road</p></div></div>
                 </div>
-
                 <div class="contact-form">
                     <h3>Send a Message</h3>
-                    
-                    <!-- Message display area -->
                     <div id="formMessage" style="display: none; margin-bottom: 20px; padding: 15px; border-radius: 8px;"></div>
-                    
                     <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="contactName" name="name" placeholder="Your Full Name" required>
-                            <small class="form-error" data-field="name" style="color: #dc3545; display: none;"></small>
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="email" class="form-control" id="contactEmail" name="email" placeholder="Your Email Address" required>
-                            <small class="form-error" data-field="email" style="color: #dc3545; display: none;"></small>
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="tel" class="form-control" id="contactPhone" name="phone" placeholder="Your Phone Number (Optional)">
-                            <small class="form-error" data-field="phone" style="color: #dc3545; display: none;"></small>
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="contactOrganization" name="organization" placeholder="Your Organization (Optional)">
-                            <small class="form-error" data-field="organization" style="color: #dc3545; display: none;"></small>
-                        </div>
-                        
+                        <div class="form-group"><input type="text" class="form-control" id="contactName" name="name" placeholder="Your Full Name" required></div>
+                        <div class="form-group"><input type="email" class="form-control" id="contactEmail" name="email" placeholder="Your Email Address" required></div>
+                        <div class="form-group"><input type="tel" class="form-control" id="contactPhone" name="phone" placeholder="Your Phone Number"></div>
                         <div class="form-group">
                             <select class="form-control" id="contactInterest" name="interest" required>
                                 <option value="" disabled selected>Select Area of Interest</option>
-                                <option value="Emerging Leaders Programme">Emerging Leaders Programme</option>
-                                <option value="First-Time Managers Programme">First-Time Managers Programme</option>
-                                <option value="Management & Strategy Programme">Management & Strategy Programme</option>
-                                <option value="Executive Leadership Programme">Executive Leadership Programme</option>
-                                <option value="Board Excellence Programme">Board Excellence Programme</option>
-                                <option value="Specialist Governance Masterclasses">Specialist Governance Masterclasses</option>
                                 <option value="Girls Conference">Girls Leadership Conference</option>
+                                <option value="Boys Conference">Boys Leadership Conference</option>
                                 <option value="General Inquiry">General Inquiry</option>
                             </select>
-                            <small class="form-error" data-field="interest" style="color: #dc3545; display: none;"></small>
                         </div>
-                        
-                        <div class="form-group">
-                            <textarea class="form-control" id="contactMessage" name="message" placeholder="Your Message" rows="5" required></textarea>
-                            <small class="form-error" data-field="message" style="color: #dc3545; display: none;"></small>
-                        </div>
-                        
-                        <!-- Hidden honeypot field for spam prevention -->
-                        <input type="text" name="honeypot" style="display:none">
-                        
-                        <button type="submit" class="btn btn-primary" style="width: 100%;" id="submitBtn">
-                            <i class="fas fa-paper-plane"></i>
-                            Send Message
-                        </button>
+                        <div class="form-group"><textarea class="form-control" id="contactMessage" name="message" placeholder="Your Message" rows="5" required></textarea></div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fas fa-paper-plane"></i> Send Message</button>
                     </form>
                 </div>
             </div>
@@ -500,96 +540,40 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <div class="footer-logo">
-                        <a href="#home">
-                            <img src="images/logo.png" alt="Alpha Acuity Solutions" class="footer-logo-image">
-                        </a>
-                    </div>
-                    <p class="footer-description">Professional advisory and training firm specialising in governance, leadership development, and organisational effectiveness.</p>
-                    
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                    </div>
+                    <div class="footer-logo"><a href="#home"><img src="images/logo.png" alt="Alpha Acuity Solutions" class="footer-logo-image"></a></div>
+                    <p class="footer-description">Professional advisory firm specialising in governance, leadership development, and organisational effectiveness.</p>
+                    <div class="social-links"><a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a><a href="#" class="social-link"><i class="fab fa-twitter"></i></a><a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a></div>
                 </div>
-                
-                <div class="footer-col">
-                    <h4 class="footer-heading">Our Services</h4>
-                    <ul class="footer-links">
-                        <li><a href="#programmes">Leadership Development</a></li>
-                        <li><a href="#conference">Girls Conference</a></li>
-                        <li><a href="#programmes">Governance Advisory</a></li>
-                        <li><a href="#programmes">Executive Coaching</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4 class="footer-heading">Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#conference">Girls Conference</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4 class="footer-heading">Stay Updated</h4>
-                    <p class="footer-description">Subscribe to our newsletter for insights on leadership and governance.</p>
-                    
-                    <div class="form-group" style="margin-top: 20px;">
-                        <input type="email" class="form-control" placeholder="Your Email" style="background-color: rgba(255, 255, 255, 0.1); color: white; border-color: rgba(255, 255, 255, 0.2);">
-                        <button type="button" class="btn btn-primary" style="width: 100%; margin-top: 12px; background-color: var(--secondary); border: none;">
-                            <i class="fas fa-paper-plane"></i>
-                            Subscribe
-                        </button>
-                    </div>
-                </div>
+                <div class="footer-col"><h4 class="footer-heading">Quick Links</h4><ul class="footer-links"><li><a href="#home">Home</a></li><li><a href="#about">About Us</a></li><li><a href="#conference">Girls Conference</a></li><li><a href="#boys-conference">Boys Conference</a></li><li><a href="#contact">Contact</a></li></ul></div>
             </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2026 Alpha Acuity Solutions Limited. All rights reserved.</p>
-            </div>
+            <div class="footer-bottom"><p>&copy; 2026 Alpha Acuity Solutions Limited. All rights reserved.</p></div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script src="js/main.js"></script>
     <script>
-        // Add some inline JavaScript for the Girls Conference functionality
+        // Modal functionality
+        function openModal() {
+            document.getElementById('highlightsModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('highlightsModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById('highlightsModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+        
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Alpha Acuity Solutions website loaded');
-            
-            // Track clicks on Girls Conference link
-            const girlsConferenceLink = document.querySelector('a[href*="docs.google.com/forms"]');
-            if (girlsConferenceLink) {
-                girlsConferenceLink.addEventListener('click', function() {
-                    console.log('Girls Conference registration link clicked');
-                });
-            }
-            
-            // Add "Girls Conference" option to the dropdown in contact form if not already there
-            const interestSelect = document.getElementById('contactInterest');
-            if (interestSelect) {
-                const options = interestSelect.options;
-                let hasGirlsConference = false;
-                for (let i = 0; i < options.length; i++) {
-                    if (options[i].value === 'Girls Conference') {
-                        hasGirlsConference = true;
-                        break;
-                    }
-                }
-                
-                if (!hasGirlsConference) {
-                    const option = document.createElement('option');
-                    option.value = 'Girls Conference';
-                    option.textContent = 'Girls Leadership Conference';
-                    interestSelect.insertBefore(option, interestSelect.lastChild);
-                }
-            }
+            console.log('Alpha Acuity Solutions - Girls Conference 2026 Highlights Ready');
         });
     </script>
+    
+    <script src="js/main.js"></script>
 </body>
 </html>
-

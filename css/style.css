@@ -1203,3 +1203,190 @@ footer {
         font-size: 1.3rem;
     }
 }
+/* ===== NEW STYLES FOR GIRLS CONFERENCE HIGHLIGHTS & BOYS CONFERENCE ===== */
+
+/* Highlights Grid for Conference Images */
+.highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.highlight-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.highlight-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.highlight-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.highlight-caption {
+    padding: 1rem;
+    text-align: center;
+    font-weight: 600;
+    color: var(--primary);
+    background: white;
+    font-size: 0.95rem;
+}
+
+/* Event Summary Box */
+.event-summary {
+    background: linear-gradient(135deg, rgba(229, 180, 49, 0.08) 0%, rgba(29, 58, 102, 0.05) 100%);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin: 1.5rem 0;
+    border-left: 4px solid var(--secondary);
+}
+
+.event-summary p {
+    margin-bottom: 0;
+    line-height: 1.7;
+    color: var(--gray);
+}
+
+.event-summary strong {
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+/* Boys Conference Section */
+.boys-conference {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+}
+
+.boys-conference-card {
+    background: linear-gradient(135deg, var(--primary) 0%, #0f172a 100%);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    color: white;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.boys-conference-card:hover {
+    transform: translateY(-5px);
+}
+
+.boys-conference-card h3 {
+    color: white;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.boys-conference-card p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Button Styles for Boys Conference */
+.btn-outline-light {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 40px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.btn-outline-light:hover {
+    background: white;
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments for new sections */
+@media (max-width: 992px) {
+    .highlights-grid {
+        gap: 1rem;
+    }
+    
+    .highlight-img {
+        height: 180px;
+    }
+    
+    .boys-conference-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .boys-conference-card h3 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .highlights-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .highlight-img {
+        height: 200px;
+    }
+    
+    .event-summary {
+        padding: 1rem;
+    }
+    
+    .boys-conference-card {
+        padding: 1.5rem;
+    }
+    
+    .boys-conference-card h3 {
+        font-size: 1.3rem;
+    }
+    
+    .btn-outline-light {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Fix for conference section to ensure proper spacing */
+.conference {
+    overflow: hidden;
+}
+
+.conference-cta {
+    margin-top: 30px;
+}
+
+.conference-cta .btn {
+    margin-bottom: 10px;
+}
+
+/* Ensure buttons in conference section stack nicely on mobile */
+@media (max-width: 768px) {
+    .conference-cta {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .conference-cta .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
